@@ -1,0 +1,74 @@
+{
+   "action": {
+      "default_icon": {
+         "128": "icons/icon@128px.png",
+         "16": "icons/icon@16px.png",
+         "256": "icons/icon@256px.png",
+         "300": "icons/icon@300px.png",
+         "32": "icons/icon@32px.png",
+         "48": "icons/icon@48px.png",
+         "512": "icons/icon@512px.png",
+         "64": "icons/icon@64px.png"
+      },
+      "default_popup": "popup/dist/index.html?type=popup",
+      "default_title": "__MSG_appName__\nKlik om te configureren"
+   },
+   "background": {
+      "service_worker": "src/service-worker.js",
+      "type": "module"
+   },
+   "content_scripts": [ {
+      "js": [ "src/scripts/util.js", "src/scripts/api.js" ],
+      "matches": [ "*://*.magister.net/*", "*://login.microsoftonline.com/*/oauth2/authorize*" ],
+      "run_at": "document_start"
+   }, {
+      "css": [ "src/styles/main.css", "src/styles/today/today.css", "src/styles/today/schedule.css", "src/styles/today/widgets.css", "src/styles/gamification.css", "src/styles/grades.css", "src/styles/studyguide.css", "src/styles/shadow-elements.css" ],
+      "js": [ "src/scripts/style.js" ],
+      "matches": [ "*://*.magister.net/*" ],
+      "run_at": "document_start"
+   }, {
+      "js": [ "src/scripts/main.js", "src/scripts/today/schedule.js", "src/scripts/today/widgets.js", "src/scripts/today/today.js", "src/scripts/gamification.js", "src/scripts/grades/grades.js", "src/scripts/grades/list.js", "src/scripts/grades/backup.js", "src/scripts/grades/statistics.js", "src/scripts/grades/calculator.js", "src/scripts/studyguide.js", "src/scripts/books.js" ],
+      "matches": [ "*://*.magister.net/magister/*" ],
+      "run_at": "document_end"
+   }, {
+      "js": [ "src/scripts/login.js" ],
+      "matches": [ "*://accounts.magister.net/account/login*" ],
+      "run_at": "document_end"
+   }, {
+      "js": [ "src/scripts/microsoft-login.js" ],
+      "matches": [ "*://login.microsoftonline.com/*/oauth2/authorize*" ],
+      "run_at": "document_end"
+   }, {
+      "js": [ "src/scripts/util.js", "src/scripts/theme-store.js" ],
+      "matches": [ "*://study-tools.nl/*" ]
+   } ],
+   "default_locale": "nl",
+   "description": "__MSG_appDesc__",
+   "host_permissions": [ "*://*.magister.net/*" ],
+   "icons": {
+      "128": "icons/icon@128px.png",
+      "16": "icons/icon@16px.png",
+      "256": "icons/icon@256px.png",
+      "300": "icons/icon@300px.png",
+      "32": "icons/icon@32px.png",
+      "48": "icons/icon@48px.png",
+      "512": "icons/icon@512px.png",
+      "64": "icons/icon@64px.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjpKzfLD3VIrJPw5SDB+eaTTj2AqEESdIxMyOYY1o2wF8jYDglyOULjPZttllh+j//5r6HicKlok5OBhoZtX3y9KwEDr8pKWAXpfzhyks/cRO1G2e0oL4zCp/ojMijLsYnkK0bXeY7IhVQxNgMGhGxpXSq3Rqx1ZetwmOZzVDkQHYEdx5SUe0uxFVK0xFq/xwnO+C0dfpwd2hFCwV6otK7vssOB7kPRbOy7pigpxQUcq+qw1d+7mCieiTJfREW5RPQQTrbFzqvTTCq6v3+1biBaO4ev80C0TcSap3iGmXITNjEz+e0StYX8+PH+zeeH7GLzpPxVzKO/V0llmrXQdG6QIDAQAB",
+   "manifest_version": 3,
+   "minimum_chrome_version": "109",
+   "name": "__MSG_appName__",
+   "options_page": "popup/dist/index.html?type=page",
+   "options_ui": {
+      "open_in_tab": true,
+      "page": "popup/dist/index.html?type=options"
+   },
+   "permissions": [ "storage", "webRequest" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "3.16.2",
+   "web_accessible_resources": [ {
+      "matches": [ "*://*.magister.net/*", "*://study-tools.nl/*" ],
+      "resources": [ "src/strings/nl.json", "src/strings/en.json", "src/strings/fr.json", "src/strings/de.json", "src/strings/sv.json", "src/strings/la.json" ]
+   } ]
+}
